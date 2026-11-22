@@ -1,5 +1,6 @@
-build:
-	odin build -file main.odin
-
 run: build
-	./main
+	./breakout
+
+build:
+	odin build .
+

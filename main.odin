@@ -1,17 +1,17 @@
 package breakout
 
-import "core:fmt"
 import rl "vendor:raylib"
 
 main :: proc() {
-	fmt.print("Hello, World")
 	rl.InitWindow(640, 480, "Hello, World!")
 	defer rl.CloseWindow()
 
+	game: Game = init()
+	rl.SetTargetFPS(game.config.target_fps)
+	start_game(&game)
 	for !rl.WindowShouldClose() {
-		rl.BeginDrawing()
-		rl.ClearBackground(rl.BLACK)
-		rl.DrawRectangle(0, 0, 100, 100, rl.RED)
-		rl.EndDrawing()
+		update(&game)
+		render(&game)
+		input_handler(&game)
 	}
 }
